@@ -1,0 +1,9 @@
+{
+  "cmd": "oscript",
+  "name": "OneScript: Testing",
+  "args": [ "-encoding=utf-8", "../oscript-library/tests/testrunner.os", "-runall", "{PROJECT_PATH}/tests"],
+  "sh": false,
+  "errorMatch": [
+    "^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$"
+  ]
+}
