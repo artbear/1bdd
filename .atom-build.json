@@ -5,5 +5,15 @@
   "sh": false,
   "errorMatch": [
     "^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$"
-  ]
+  ],
+  "targets": {
+      "Testing 1 test": {
+        "cmd": "oscript",
+        "args": [ "-encoding=utf-8", "../oscript-library/tests/testrunner.os", "-run", "tests/gherkin-read-tests.os", "Тест_ДолженПрочитатьФайлФичиСоЧисловымиПараметрами"],
+        "sh": false,
+        "errorMatch": [
+          "^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$"
+        ]
+      }
+    }
 }
