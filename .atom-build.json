@@ -9,12 +9,12 @@
   "targets": {
     "Exec feature file": {
       "cmd": "oscript",
-      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{FILE_ACTIVE}"],
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{FILE_ACTIVE}", "-verbose", "on"],
       "sh": false
     },
     "Generate steps for feature file": {
       "cmd": "oscript",
-      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "generate", "{FILE_ACTIVE}"],
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "generate", "{FILE_ACTIVE}", "-verbose", "on"],
       "sh": false
     },
     "Testing 1 test": {
