@@ -7,7 +7,12 @@
     "^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$"
   ],
   "targets": {
-    "Exec feature file": {
+    "Exec main feature": {
+      "cmd": "oscript",
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{PROJECT_PATH}/features/core/ВыполнениеФич.feature", "-verbose", "on", "-out", "{PROJECT_PATH}/exec.log"],
+      "sh": false
+    },
+    "Exec feature": {
       "cmd": "oscript",
       "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/exec.log"],
       "sh": false
