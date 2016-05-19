@@ -1,0 +1,34 @@
+{
+  "cmd": "oscript",
+  "name": "OneScript: Testing",
+  "args": [ "-encoding=utf-8", "../oscript-library/tests/testrunner.os", "-runall", "{PROJECT_PATH}/tests"],
+  "sh": false,
+  "errorMatch": [
+    "^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$"
+  ],
+  "targets": {
+    "Exec main feature": {
+      "cmd": "oscript",
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{PROJECT_PATH}/features/core/ВыполнениеФич.feature", "-verbose", "on", "-out", "{PROJECT_PATH}/exec.log"],
+      "sh": false
+    },
+    "Exec feature": {
+      "cmd": "oscript",
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/exec.log"],
+      "sh": false
+    },
+    "Generate steps for feature file": {
+      "cmd": "oscript",
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "generate", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/gen.log"],
+      "sh": false
+    },
+    "Testing 1 test": {
+      "cmd": "oscript",
+      "args": [ "-encoding=utf-8", "../oscript-library/tests/testrunner.os", "-run", "tests/gherkin-read-tests.os", "Тест_ДолженПрочитатьФайлФичиСоЧисловымиПараметрами"],
+      "sh": false,
+      "errorMatch": [
+        "^\\{Модуль (?<file>.+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)\\}$"
+      ]
+    }
+  }
+}
