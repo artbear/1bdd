@@ -19,7 +19,7 @@
     },
     "Generate steps for feature file": {
       "cmd": "oscript",
-      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "generate", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/gen.log"],
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "gen", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/gen.log"],
       "sh": false
     },
     "Test current test-file": {
