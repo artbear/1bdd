@@ -1,7 +1,7 @@
 {
   "cmd": "oscript",
   "name": "OneScript: Testing",
-  "args": [ "-encoding=utf-8", "../oscript-library/tests/testrunner.os", "-runall", "{PROJECT_PATH}/tests"],
+  "args": [ "-encoding=utf-8", "{PROJECT_PATH}/../oscript-library/tests/testrunner.os", "-runall", "{PROJECT_PATH}/tests"],
   "sh": false,
   "errorMatch": [
     "{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)"
@@ -9,7 +9,7 @@
   "targets": {
     "Exec main feature": {
       "cmd": "oscript",
-      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{PROJECT_PATH}/features/core/ВыполнениеФич.feature", "-verbose", "on", "-out", "{PROJECT_PATH}/exec.log"],
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{PROJECT_PATH}/features/core/ПрогонВсехФичПроекта.feature", "-out", "{PROJECT_PATH}/exec.log"],
       "sh": false,
       "errorMatch": [
         "{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)"
@@ -17,23 +17,39 @@
     },
     "Exec feature": {
       "cmd": "oscript",
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{FILE_ACTIVE}", "-out", "{PROJECT_PATH}/exec.log"],
+      "sh": false,
+      "errorMatch": [
+        "{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)"
+      ]
+    },
+    "Exec feature + debug": {
+      "cmd": "oscript",
       "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/exec.log"],
       "sh": false,
       "errorMatch": [
         "{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)"
       ]
     },
-    "Generate steps for feature file": {
+    "Generate feature steps": {
       "cmd": "oscript",
-      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/src/bdd.os", "gen", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/gen.log"],
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}\\src\\bdd.os", "gen", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/gen.log"],
       "sh": false,
       "errorMatch": [
-        "{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)"
+        "{Модуль (?<file>[^/]+) \/ Ошибка в строке: (?<line>[0-9]+) \/ (?<message>.*)"
+      ]
+    },
+    "Generate feature steps + debug": {
+      "cmd": "oscript",
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}\\src\\bdd.os", "gen", "{FILE_ACTIVE}", "-verbose", "on", "-out", "{PROJECT_PATH}/gen.log"],
+      "sh": false,
+      "errorMatch": [
+        "{Модуль (?<file>[^/]+) \/ Ошибка в строке: (?<line>[0-9]+) \/ (?<message>.*)"
       ]
     },
     "Test current test-file": {
       "cmd": "oscript",
-      "args": [ "-encoding=utf-8", "tests/testrunner.os", "-run", "{FILE_ACTIVE}"],
+      "args": [ "-encoding=utf-8", "{PROJECT_PATH}/../oscript-library/tests/testrunner.os", "-run", "{FILE_ACTIVE}"],
       "sh": false,
       "errorMatch": [
         "{Модуль (?<file>[^/]+) / Ошибка в строке: (?<line>[0-9]+) / (?<message>.*)"
