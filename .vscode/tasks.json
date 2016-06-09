@@ -22,7 +22,7 @@
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
@@ -45,7 +45,7 @@
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
@@ -67,12 +67,23 @@
             "isTestCommand": true,
             "problemMatcher": {
                 "fileLocation": "absolute",
-                "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                "pattern": [
+                {
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
                 }
+                // ,
+                // {
+                //     "regexp": "([^{]*)}",
+                //     // "file": 1,
+                //     // "location": 2,
+                //     "message": 1,
+                //     "loop":true
+                // }
+
+                ]
             }
         },
         {
@@ -93,7 +104,7 @@
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
@@ -119,7 +130,7 @@
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
@@ -145,7 +156,7 @@
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
@@ -167,7 +178,7 @@
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
@@ -220,7 +231,7 @@
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
-                    "regexp": "{Модуль\\s+([^/]+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+(.*)}",
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
                     "file": 1,
                     "location": 2,
                     "message": 3
