@@ -39,14 +39,14 @@ node("slave") {
     echo "${env.WORKSPACE}"
 
     command = """oscript ./src/bdd.os ./features/core -out ./exec.log"""
-    if (isUnix) {sh "${command}"} else {bat "chcp 1251 \n${command}"}       
+    if (isUnix) {sh "${command}"} else {bat "chcp 1251 > nul \n${command}"}       
 
     stage "testing with testrunner.os"
     echo "testing with testrunner.os"
     echo "${env.WORKSPACE}"
 
     command = """oscript ../oscript-library/tests/testrunner.os -runall ./tests"""
-    if (isUnix) {sh "${command}"} else {bat "chcp 1251 \n${command}"}       
+    if (isUnix) {sh "${command}"} else {bat "chcp 1251 > nul \n${command}"}       
     
     // stage "build"
     // echo "build catalogs"
