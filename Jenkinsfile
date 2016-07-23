@@ -45,8 +45,10 @@ node("slave") {
     echo "testing with testrunner.os"
     echo "${env.WORKSPACE}"
 
-    command = """oscript ./tests/testrunner.os -runall ./tests"""
+    command = """oscript ./tests/testrunner.os -runall ./tests xddReportPath ./tests"""
     if (isUnix) {sh "${command}"} else {bat "@chcp 1251 > nul \n${command}"}       
+    
+    step([$class: 'JUnitResultArchiver', testResults: '**/tests/*.xml'])
     
     // stage "build"
     // echo "build catalogs"
