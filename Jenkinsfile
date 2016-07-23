@@ -1,7 +1,7 @@
 #!groovy
 node("slave") {
     def isUnix = isUnix();
-    // stage "checkout"
+    stage "checkout"
 
     // if (env.DISPLAY) {
     //     println env.DISPLAY;
@@ -10,8 +10,8 @@ node("slave") {
     // }
     // env.RUNNER_ENV="production";
 
-    // checkout scm
-    // if (isUnix) {sh 'git submodule update --init'} else {bat "git submodule update --init"}
+    checkout scm
+    if (isUnix) {sh 'git submodule update --init'} else {bat "git submodule update --init"}
     // stage "init base"
 
     // //checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SubmoduleOption', disableSubmodules: false, recursiveSubmodules: true, reference: '', trackingSubmodules: true]], submoduleCfg: [], userRemoteConfigs: [[url: 'http://git.http.service.consul/shenja/vanessa-behavior.git']]])
