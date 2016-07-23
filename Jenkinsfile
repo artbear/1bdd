@@ -34,6 +34,13 @@ node("slave") {
     //     }
     // }
 
+    stage "exec all features"
+    echo "exec all features from project"
+    echo "${env.WORKSPACE}"
+
+    command = """oscript ./src/bdd.os ./features/core -out ./exec.log"""
+    if (isUnix) {sh "${command}"} else {bat "chcp 1251 \n${command}"}       
+
     stage "testing with testrunner.os"
     echo "testing with testrunner.os"
     echo "${env.WORKSPACE}"
