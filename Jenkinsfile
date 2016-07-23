@@ -41,11 +41,15 @@ node("slave") {
     command = """oscript ./src/bdd.os ./features/core -out ./exec.log"""
     if (isUnix) {sh "${command}"} else {bat "@chcp 1251 > nul \n${command}"}       
 
+    stage "checkout oscript-library for testrunner.os"
+    checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'oscript-library']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/EvilBeaver/oscript-library.git']]])
+    // checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'oscript-library']], submoduleCfg: [], userRemoteConfigs: [[url: 'c:\\projects\\oscript-library\\.git']]])
+
     stage "testing with testrunner.os"
     echo "testing with testrunner.os"
     echo "${env.WORKSPACE}"
 
-    command = """oscript ./tests/testrunner.os -runall ./tests xddReportPath ./tests"""
+    command = """oscript ./oscript-library/tests/testrunner.os -runall ./tests xddReportPath ./tests"""
     if (isUnix) {sh "${command}"} else {bat "@chcp 1251 > nul \n${command}"}       
     
     step([$class: 'JUnitResultArchiver', testResults: '**/tests/*.xml'])
