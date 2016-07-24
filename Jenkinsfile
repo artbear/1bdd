@@ -13,7 +13,7 @@ node("slave") {
     stage "testing with testrunner.os"
 
     command = """oscript ./oscript-library/tests/testrunner.os -runall ./tests xddReportPath ./tests"""
-    if (isUnix) {sh "${command}"} else {bat "@chcp 1251 > nul \n${command}}       
+    if (isUnix) {sh "${command}"} else {bat "@chcp 1251 > nul \n${command}"}       
 
     step([$class: 'JUnitResultArchiver', testResults: '**/tests/*.xml'])
 
