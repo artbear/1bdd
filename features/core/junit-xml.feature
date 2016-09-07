@@ -18,7 +18,8 @@
        <testsuites name="1bdd" time="0" tests="1" failures="0" skipped="0">
            <testsuite name="Пустой функционал">
                <properties />
-               <testcase classname="Ничего не делаем" name="Ничего не делаем" status="passed" />
+               <testcase classname="Ничего не делаем" name="я ничего не делаю" status="passed" />
+               <testcase classname="Ничего не делаем" name="ничего не происходит" status="passed" />
            </testsuite>
        </testsuites>
 	"""
@@ -32,9 +33,16 @@
        <testsuites name="1bdd" time="0" tests="1" failures="1" skipped="0">
            <testsuite name="Выполнение фич">
                <properties />
-               <testcase classname="После ошибочного шага следующие шаги сценария не выполняются" name="После ошибочного шага следующие шаги сценария не выполняются" status="failure" />
-           </testsuite>
-       </testsuites>
+               <testcase classname="После ошибочного шага следующие шаги сценария не выполняются" name="я запускаю падающий шаг с параметром &quot;Первый падающий шаг&quot;" status="failure">
+                   <failure message="
+	"""
+	И в файле "./test-report.xml" есть строка 
+	"""
+       tests\fixtures\step_definitions\ПадающийШаг.os / Ошибка в строке: 21 / ЯЗапускаюПадающийШагСПараметром-Первый падающий шаг}    &#xD;&#
+	"""
+	И в файле "./test-report.xml" есть строка 
+	"""
+		;	 ВызватьИсключение СтрШаблон(&quot;ЯЗапускаюПадающийШагСПараметром-%1&quot;, ПарамСтрока);&#xD;" />
 	"""
 
 Сценарий: Получение отчета в формате JUnit-xml для нереализованного теста
@@ -46,7 +54,7 @@
        <testsuites name="1bdd" time="0" tests="1" failures="0" skipped="1">
            <testsuite name="Выполнение фич">
                <properties />
-               <testcase classname="После нереализованного шага следующие шаги сценария не выполняются" name="После нереализованного шага следующие шаги сценария не выполняются" status="skipped" />
-           </testsuite>
+               <testcase classname="После нереализованного шага следующие шаги сценария не выполняются" name="я запускаю нереализованный шаг" status="skipped" />
+		   </testsuite>
        </testsuites>
 	"""
