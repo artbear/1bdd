@@ -24,3 +24,17 @@
 	"""
 	# И в файле "./test-report.xml" есть строка "СТРАННОЕ"
 	# И файл junit "./test-report.xml" правильного формата
+
+Сценарий: Получение отчета в формате JUnit-xml для падающего теста
+
+	Тогда  проверка поведения фичи "ПадающийШаг" с передачей параметра "-junit-out ./test-report.xml" закончилась с кодом возврата 2
+	И файл "./test-report.xml" существует
+	И в файле "./test-report.xml" есть строка 
+	"""
+       <testsuites name="1bdd" time="0" tests="1" failures="1" skipped="0">
+           <testsuite name="Выполнение фич">
+               <properties />
+               <testcase classname="После ошибочного шага следующие шаги сценария не выполняются" name="После ошибочного шага следующие шаги сценария не выполняются" status="failure" />
+           </testsuite>
+       </testsuites>
+	"""
