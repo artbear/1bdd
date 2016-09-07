@@ -22,8 +22,6 @@
            </testsuite>
        </testsuites>
 	"""
-	# И в файле "./test-report.xml" есть строка "СТРАННОЕ"
-	# И файл junit "./test-report.xml" правильного формата
 
 Сценарий: Получение отчета в формате JUnit-xml для падающего теста
 
@@ -35,6 +33,20 @@
            <testsuite name="Выполнение фич">
                <properties />
                <testcase classname="После ошибочного шага следующие шаги сценария не выполняются" name="После ошибочного шага следующие шаги сценария не выполняются" status="failure" />
+           </testsuite>
+       </testsuites>
+	"""
+
+Сценарий: Получение отчета в формате JUnit-xml для нереализованного теста
+
+	Тогда  проверка поведения фичи "НеРеализованныйШаг" с передачей параметра "-junit-out ./test-report.xml" закончилась с кодом возврата 1
+	И файл "./test-report.xml" существует
+	И в файле "./test-report.xml" есть строка 
+	"""
+       <testsuites name="1bdd" time="0" tests="1" failures="0" skipped="1">
+           <testsuite name="Выполнение фич">
+               <properties />
+               <testcase classname="После нереализованного шага следующие шаги сценария не выполняются" name="После нереализованного шага следующие шаги сценария не выполняются" status="skipped" />
            </testsuite>
        </testsuites>
 	"""
