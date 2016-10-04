@@ -60,7 +60,9 @@
                 "${file}",
                 "-fail-fast", 
                 "-out", 
-                "${workspaceRoot}/exec.log"
+                "${workspaceRoot}/exec.log",
+                "-junit-out", 
+                "${workspaceRoot}/./tests/junit-log.xml"
             ],
             "echoCommand": true,
             "showOutput": "always",
