@@ -10,7 +10,7 @@
         {
             "taskName": "Testing project",
             "args": [
-                "${workspaceRoot}/../oscript-library/tests/testrunner.os",
+                "${workspaceRoot}/../oscript-library/src/1testrunner/testrunner.os",
                 "-runall",
                 "${workspaceRoot}/tests"
             ],
@@ -171,7 +171,7 @@
         {
             "taskName": "Test current test-file",
             "args": [
-                "${workspaceRoot}/../oscript-library/tests/testrunner.os",
+                "${workspaceRoot}/../oscript-library/src/1testrunner/testrunner.os",
                 "-run",
                 "${file}"
             ],
