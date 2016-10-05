@@ -8,18 +8,18 @@ node("slave") {
     if (isUnix) {sh 'git submodule update --init'} else {bat "git submodule update --init"}
 
     stage "checkout oscript-library for testrunner.os"
-    checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'oscript-library']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/EvilBeaver/oscript-library.git']]])
+    // checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'oscript-library']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/EvilBeaver/oscript-library.git']]])
 
     stage "testing with testrunner.os"
 
-    command = """oscript ./oscript-library/tests/testrunner.os -runall ./tests xddReportPath ./tests"""
+    command = """oscript ./oscript-library/src/1testrunner/testrunner.os -runall ./tests xddReportPath ./tests"""
     if (isUnix) {sh "${command}"} else {bat "@chcp 1251 > nul \n${command}"}       
 
     step([$class: 'JUnitResultArchiver', testResults: '**/tests/*.xml'])
 
     stage "exec all features"
 
-    command = """oscript ./src/bdd.os ./features/core -out ./bdd-exec.log"""
+    command = """oscript ./src/bdd.os ./features/core -out ./bdd-exec.log -junit-out ./bdd-exec.xml"""
 
     def errors = []
     try{
@@ -40,4 +40,5 @@ node("slave") {
     }           
 
     step([$class: 'ArtifactArchiver', artifacts: '**/bdd-exec.log', fingerprint: true])
+    step([$class: 'JUnitResultArchiver', testResults: '**/bdd*.xml'])
 }

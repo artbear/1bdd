@@ -2,3 +2,4 @@ exec-log.txt
 exec.log
 gen.log
 tests/fixtures/test-report.xml
+tests/junit-log.xml
