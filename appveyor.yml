@@ -16,12 +16,21 @@ install:
     SET PATH=%PATH%;%ProgramFiles(x86)%\OneScript\bin
 
     rem type %temp%\oscript-setup.log
+    
     dir "%ProgramFiles(x86)%\OneScript\bin"
 
     "%ProgramFiles(x86)%\OneScript\bin\oscript.exe" -version
 
-    "%ProgramFiles(x86)%\OneScript\bin\opm.bat" update 1testrunner
+    rem "%ProgramFiles(x86)%\OneScript\bin\opm.bat" update 1testrunner
+    
+    git clone -q --branch=master https://github.com/artbear/1testrunner.git c:\projects\1testrunner
 
+    dir c:\projects\1testrunner
+    
+    rem pushd c:\projects\1testrunner
+    rem "%ProgramFiles(x86)%\OneScript\bin\opm.bat" app 1testrunner
+    rem popd
+    
     dir "%ProgramFiles(x86)%\OneScript\bin"
 # to disable automatic builds
 build: off
