@@ -11,16 +11,10 @@ install:
 
     %temp%\oscript-setup.exe /silent /log="%temp%\oscript-setup.log" /saveinf="%temp%\oscript-setup-settings.txt"
 
-    SET PATH=%PATH%;%ProgramFiles(x86)%\OneScript\bin
-
-    rem type %temp%\oscript-setup.log
-    
     dir "%ProgramFiles(x86)%\OneScript\bin"
 
     "%ProgramFiles(x86)%\OneScript\bin\oscript.exe" -version
 
-    rem "%ProgramFiles(x86)%\OneScript\bin\opm.bat" update 1testrunner
-    
     git clone -q --branch=master https://github.com/artbear/1testrunner.git c:\projects\1testrunner
 
 # to disable automatic builds
@@ -35,3 +29,4 @@ after_test:
 - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests\bdd-log.xml))
 artifacts:
 - path: tests\tests.xml
+- path: tests\bdd-log.xml
