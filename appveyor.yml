@@ -1,0 +1,20 @@
+version: 1.2.{build}
+pull_requests:
+  do_not_increment_build_number: true
+init:
+- ps: Set-WinSystemLocale ru-RU
+#environment:
+#  oscript: C:\Program Files (x86)\OneScript\bin\oscript.exe
+install:
+- cmd: "git submodule update --init --recursive\n\ncurl -o %temp%\\oscript-setup.exe http://oscript.io/downloads/night-build/exe\n\nrem \n%temp%\\oscript-setup.exe /silent /log=\"%temp%\\oscript-setup.log\" /saveinf=\"%temp%\\oscript-setup-settings.txt\"\n\nSET PATH=%PATH%;%ProgramFiles(x86)%\\OneScript\\bin\n\nrem type %temp%\\oscript-setup.log\n\"%ProgramFiles(x86)%\\OneScript\\bin\\oscript.exe\" -version"
+# to disable automatic builds
+build: off
+test_script:
+- cmd: appveyor-runtests.cmd
+after_test:
+- ps: # upload results to AppVeyor
+- ps: Write-Host "Загружаю результаты тестов на CI"
+- ps: $wc = New-Object 'System.Net.WebClient'
+- ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests\tests.xml))
+artifacts:
+- path: tests\tests.xml
