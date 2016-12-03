@@ -1,13 +1,15 @@
 # 1BDD для OneScript
 
+[![Build status](https://ci.appveyor.com/api/projects/status/vbnk445352crljjn?svg=true)](https://ci.appveyor.com/project/artbear/1bdd) 
+
+[![Join the chat at https://gitter.im/artbear/1bdd](https://badges.gitter.im/artbear/1bdd.svg)](https://gitter.im/artbear/1bdd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  Здесь вы можете задавать любые вопросы разработчикам и активным участникам.
+
 `1bdd` - инструмент для выполнения автоматизированных требований/тестов, написанных на обычном, не программном языке.
 
 Иными словами, это консольный фреймворк, реализующий `BDD` для проекта [OneScript](https://github.com/EvilBeaver/OneScript).
 Для Windows и Linux.
 
 Идеи черпаются из проекта [Cucumber](https://cucumber.io).
-
-[![Join the chat at https://gitter.im/artbear/1bdd](https://badges.gitter.im/artbear/1bdd.svg)](https://gitter.im/artbear/1bdd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  Здесь вы можете задавать любые вопросы разработчикам и активным участникам.
 
 # Командная строка запуска
 
