@@ -3,8 +3,6 @@ pull_requests:
   do_not_increment_build_number: true
 init:
 - ps: Set-WinSystemLocale ru-RU
-#environment:
-#  oscript: C:\Program Files (x86)\OneScript\bin\oscript.exe
 install:
 - cmd: >-
     git submodule update --init --recursive
@@ -25,13 +23,6 @@ install:
     
     git clone -q --branch=master https://github.com/artbear/1testrunner.git c:\projects\1testrunner
 
-    dir c:\projects\1testrunner
-    
-    rem pushd c:\projects\1testrunner
-    rem "%ProgramFiles(x86)%\OneScript\bin\opm.bat" app 1testrunner
-    rem popd
-    
-    dir "%ProgramFiles(x86)%\OneScript\bin"
 # to disable automatic builds
 build: off
 test_script:
@@ -41,5 +32,6 @@ after_test:
 - ps: Write-Host "Загружаю результаты тестов на CI"
 - ps: $wc = New-Object 'System.Net.WebClient'
 - ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests\tests.xml))
+- ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests\bdd-log.xml.xml))
 artifacts:
 - path: tests\tests.xml
