@@ -2,4 +2,5 @@
 {
     // Entry point for OneScriptLinter. Relative path from project root folder
     "language-1c-bsl.linterEntryPoint": "src\bdd.os",
+    "editor.rulers": [120]
 }
