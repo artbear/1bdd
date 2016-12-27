@@ -46,7 +46,26 @@ node("slave") {
         }
     }           
 
+    stage "exec libs features"
+
+    command = """oscript ./src/bdd.os ./features/lib -out ./bdd-lib.log -junit-out ./bdd-lib.xml"""
+
+    errors = []
+    try{
+        cmd(command)
+    } catch (e) {
+         errors << "BDD status (lib) : ${e}"
+    }
+
+    if (errors.size() > 0) {
+        currentBuild.result = 'UNSTABLE'
+        for (int i = 0; i < errors.size(); i++) {
+            echo errors[i]
+        }
+    }           
+
     step([$class: 'ArtifactArchiver', artifacts: '**/bdd-exec.log', fingerprint: true])
+    step([$class: 'ArtifactArchiver', artifacts: '**/bdd-lib.log', fingerprint: true])
     step([$class: 'JUnitResultArchiver', testResults: '**/bdd*.xml'])
 }
 
