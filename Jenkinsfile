@@ -50,7 +50,7 @@ node("slave") {
 
     command = """oscript ./src/bdd.os ./features/lib -out ./bdd-lib.log -junit-out ./bdd-lib.xml"""
 
-    def errors = []
+    errors = []
     try{
         cmd(command)
     } catch (e) {
