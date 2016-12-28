@@ -10,5 +10,11 @@
 		.ВключитьФайл("src")
 		.ВключитьФайл("tests")
 		.ВключитьФайл("features")
+		.ВключитьФайл(".vscode")
+		.ВключитьФайл("readme.md")
+		.ВключитьФайл("LICENSE")
+		.ВключитьФайл("Jenkinsfile")
+		.ВключитьФайл("appveyor.yml")
+		.ВключитьФайл("appveyor-runtests.cmd")
 		.ВключитьФайл("lib.config")
 		.ИсполняемыйФайл("src/bdd.os", "1bdd");		
