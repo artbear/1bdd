@@ -2,7 +2,7 @@
     "version": "0.1.0",
     "windows": {
         "command": "cmd",
-        "args": ["/c"]
+        "args": ["/c", "chcp 65001 >nul &"]
     },
     "linux": {
         "command": "sh",
@@ -14,9 +14,7 @@
         {
             "taskName": "Testing project",
             "args": [
-                 "oscript",
-                 "-encoding=utf-8",
-                "${workspaceRoot}/../oscript-library/src/1testrunner/testrunner.os",
+                 "1testrunner",
                 "-runall",
                 "${workspaceRoot}/tests"
             ],
@@ -39,7 +37,6 @@
             "taskName": "Exec all features",
             "args": [
                  "oscript",
-                 "-encoding=utf-8",
                 "${workspaceRoot}/src/bdd.os",
                 "${workspaceRoot}/features/core",
                 "-fail-fast", 
@@ -65,7 +62,6 @@
             "taskName": "Exec feature",
             "args": [
                  "oscript",
-                 "-encoding=utf-8",
                 "${workspaceRoot}/src/bdd.os",
                 "${file}",
                 "-fail-fast", 
@@ -104,7 +100,6 @@
             "taskName": "Exec feature + debug",
             "args": [
                  "oscript",
-                 "-encoding=utf-8",
                 "${workspaceRoot}/src/bdd.os",
                 "${file}",
                 "-fail-fast", 
@@ -129,10 +124,35 @@
             }
         },
         {
+            "taskName": "Exec feature for current step def",
+            "args": [
+                 "1bdd",
+                "${fileDirname}/../${fileBasenameNoExtension}.feature",
+                "-fail-fast", 
+                "-out", 
+                "${workspaceRoot}/exec.log"
+            ],
+            "echoCommand": true,
+            "showOutput": "always",
+            "suppressTaskName": true,
+            "isBuildCommand": false,
+            "isTestCommand": true,
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "pattern": [
+                {
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }
+                ]
+            }
+        },
+        {
             "taskName": "Generate feature steps",
             "args": [
                  "oscript",
-                 "-encoding=utf-8",
                 "${workspaceRoot}/src/bdd.os",
                 "gen",
                 "${file}",
@@ -160,7 +180,6 @@
             "taskName": "Generate feature steps + debug",
             "args": [
                  "oscript",
-                 "-encoding=utf-8",
                 "${workspaceRoot}/src/bdd.os",
                 "gen",
                 "${file}",
@@ -188,7 +207,6 @@
             "taskName": "Test current test-file",
             "args": [
                  "oscript",
-                 "-encoding=utf-8",
                 "${workspaceRoot}/../oscript-library/src/1testrunner/testrunner.os",
                 "-run",
                 "${file}"

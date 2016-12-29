@@ -1,0 +1,35 @@
+version: 1.2.{build}
+pull_requests:
+  do_not_increment_build_number: true
+init:
+- ps: Set-WinSystemLocale ru-RU
+install:
+- cmd: >-
+    git submodule update --init --recursive
+
+    curl -o %temp%\oscript-setup.exe http://oscript.io/downloads/night-build/exe
+
+    %temp%\oscript-setup.exe /silent /log="%temp%\oscript-setup.log" /saveinf="%temp%\oscript-setup-settings.txt"
+
+    dir "%ProgramFiles(x86)%\OneScript\bin"
+    dir "%ProgramFiles(x86)%\OneScript\lib"
+
+    "%ProgramFiles(x86)%\OneScript\bin\oscript.exe" -version
+
+    git clone -q --branch=master https://github.com/artbear/1testrunner.git c:\projects\1testrunner
+
+    git clone -q --branch=master https://github.com/artbear/1commands.git "%ProgramFiles(x86)%\OneScript\lib\1commands"
+
+# to disable automatic builds
+build: off
+test_script:
+- cmd: appveyor-runtests.cmd
+after_test:
+- ps: # upload results to AppVeyor
+- ps: Write-Host "Загружаю результаты тестов на CI"
+- ps: $wc = New-Object 'System.Net.WebClient'
+- ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests\tests.xml))
+- ps: $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\tests\bdd-log.xml))
+artifacts:
+- path: tests\tests.xml
+- path: tests\bdd-log.xml
