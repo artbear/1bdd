@@ -13,7 +13,7 @@
 
 	Тогда  проверка поведения фичи "БезПараметров" с передачей параметра "-junit-out ./test-report.xml" закончилась с кодом возврата 0
 	И файл "./test-report.xml" существует
-	И в файле "./test-report.xml" есть строка 
+	И файл "./test-report.xml" содержит 
 	"""
        <testsuites name="1bdd" time="0" tests="1" failures="0" skipped="0">
            <testsuite name="Пустой функционал">
@@ -28,7 +28,7 @@
 
 	Тогда  проверка поведения фичи "ПадающийШаг" с передачей параметра "-junit-out ./test-report.xml" закончилась с кодом возврата 2
 	И файл "./test-report.xml" существует
-	И в файле "./test-report.xml" есть строка 
+	И файл "./test-report.xml" содержит 
 	"""
        <testsuites name="1bdd" time="0" tests="1" failures="1" skipped="0">
            <testsuite name="Выполнение фич">
@@ -36,11 +36,11 @@
                <testcase classname="После ошибочного шага следующие шаги сценария не выполняются" name="я запускаю падающий шаг с параметром &quot;Первый падающий шаг&quot;" status="failure">
                    <failure message="
 	"""
-	И в файле "./test-report.xml" есть строка 
+	И файл "./test-report.xml" содержит 
 	"""
        ПадающийШаг.os / Ошибка в строке: 21 / ЯЗапускаюПадающийШагСПараметром-Первый падающий шаг}
 	"""
-	И в файле "./test-report.xml" есть строка 
+	И файл "./test-report.xml" содержит 
 	"""
 		;	 ВызватьИсключение СтрШаблон(&quot;ЯЗапускаюПадающийШагСПараметром-%1&quot;, ПарамСтрока);&#xD;" />
 	"""
@@ -49,7 +49,7 @@
 
 	Тогда  проверка поведения фичи "НеРеализованныйШаг" с передачей параметра "-junit-out ./test-report.xml" закончилась с кодом возврата 1
 	И файл "./test-report.xml" существует
-	И в файле "./test-report.xml" есть строка 
+	И файл "./test-report.xml" содержит 
 	"""
        <testsuites name="1bdd" time="0" tests="1" failures="0" skipped="1">
            <testsuite name="Выполнение фич">
