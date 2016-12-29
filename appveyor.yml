@@ -1,30 +1,67 @@
 version: 1.2.{build}
 pull_requests:
   do_not_increment_build_number: true
+max_jobs: 1
 init:
 - ps: Set-WinSystemLocale ru-RU
+
+# appveyor DownloadFile http://oscript.io/downloads/latest/exe -FileName ./oscriptlatest.exe
+#     dir /w
+#     oscriptlatest.exe /VERYSILENT /DIR=".\engine\"
+#     SET PATH=%CD%\engine\bin;%PATH%
+#     oscript
+
 install:
 - cmd: >-
+    @echo on
+
     git submodule update --init --recursive
 
+    set
+
     curl -o %temp%\oscript-setup.exe http://oscript.io/downloads/latest/exe
-    # curl -o %temp%\oscript-setup.exe http://oscript.io/downloads/night-build/exe
 
     %temp%\oscript-setup.exe /silent /log="%temp%\oscript-setup.log" /saveinf="%temp%\oscript-setup-settings.txt"
 
-    dir "%ProgramFiles(x86)%\OneScript\bin"
-    dir "%ProgramFiles(x86)%\OneScript\lib"
+    set OSCRIPT=%ProgramFiles(x86)%\OneScript
 
-    "%ProgramFiles(x86)%\OneScript\bin\oscript.exe" -version
+    dir "%OSCRIPT%\bin"
+    dir "%OSCRIPT%\lib"
 
-    git clone -q --branch=master https://github.com/artbear/1testrunner.git c:\projects\1testrunner
+    rem SET PATH=%CD%\engine\bin;%PATH%
 
-    git clone -q --branch=master https://github.com/artbear/1commands.git "%ProgramFiles(x86)%\OneScript\lib\1commands"
+    SET PATH=%OSCRIPT%\bin;%PATH%
+
+    where oscript
+
+    oscript -version
+
+    chcp 65001
+
+    opm install opm
+    
+    opm list
+
+    opm install 1testrunner
+    
+    opm install 1commands
+    
+    opm install 1bdd
+
+    opm list
+
+    dir "%OSCRIPT%\bin"
+    dir "%OSCRIPT%\lib"
 
 # to disable automatic builds
 build: off
 test_script:
-- cmd: appveyor-runtests.cmd
+- cmd: >-
+    
+    appveyor-runtests.cmd
+
+    pushd %APPVEYOR_BUILD_FOLDER%
+
 after_test:
 - ps: # upload results to AppVeyor
 - ps: Write-Host "Загружаю результаты тестов на CI"
