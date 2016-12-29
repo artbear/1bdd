@@ -229,8 +229,6 @@
         {
             "taskName": "Opm: package build",
             "args": [
-                "chcp 65001 >nul",
-                "&&",
                  "opm",
                 "build",
                 "${workspaceRoot}"
