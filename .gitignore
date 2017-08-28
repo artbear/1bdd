@@ -6,3 +6,4 @@ tests/junit-log.xml
 *.ospx
 bdd-log.xml
 tests.xml
+bdd-lib.xml
