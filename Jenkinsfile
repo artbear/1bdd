@@ -1,75 +1,95 @@
-#!groovy
-node("slave") {
-    // ВНИМАНИЕ:
-    // Jenkins и его ноды нужно запускать с кодировкой UTF-8
-    //      строка конфигурации для запуска Jenkins
-    //      <arguments>-Xrs -Xmx256m -Dhudson.lifecycle=hudson.lifecycle.WindowsServiceLifecycle -Dmail.smtp.starttls.enable=true -Dfile.encoding=UTF-8 -jar "%BASE%\jenkins.war" --httpPort=8080 --webroot="%BASE%\war" </arguments>
-    //
-    //      строка для запуска нод
-    //      @"C:\Program Files (x86)\Jenkins\jre\bin\java.exe" -Dfile.encoding=UTF-8 -jar slave.jar -jnlpUrl http://localhost:8080/computer/slave/slave-agent.jnlp -secret XXX
-    //      подставляйте свой путь к java, порту Jenkins и секретному ключу
-    //
-    // Если запускать Jenkins не в режиме UTF-8, тогда нужно поменять метод cmd в конце кода, применив комментарий к методу
-
-    def isUnix = isUnix();
+pipeline {
+    agent none
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '7'))
+        skipDefaultCheckout()
+    }
     
-    stage "checkout"
+    stages {
+        stage('Тестирование кода пакета WIN') {
 
-    checkout scm
-    cmd('git submodule update --init')
+            agent { label 'windows' }
 
-    stage "checkout 1testrunner"
-    checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '1testrunner']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/artbear/1testrunner.git']]])
+            steps {
+                checkout scm
 
-    stage "testing with testrunner.os"
+                script {
+                    if( fileExists ('tasks/test.os') ){
+                        bat 'chcp 65001 > nul && oscript tasks/test.os'
+        
+                        // junit 'tests.xml'
+                        junit allowEmptyResults: true, testResults: 'tests.xml'
+                        junit allowEmptyResults: true, testResults: 'bdd-log.xml'
+                        junit allowEmptyResults: true, testResults: 'bdd-lib.xml'
+                    }
+                    else
+                        echo 'no testing task'
+                }
+                
+            }
 
-    command = """oscript ./1testrunner/testrunner.os -runall ./tests xddReportPath ./tests"""
-    cmd(command)
-
-    step([$class: 'JUnitResultArchiver', testResults: '**/tests/*.xml'])
-
-    stage "exec all features"
-
-    command = """oscript ./src/bdd.os ./features/core -out ./bdd-exec.log -junit-out ./bdd-exec.xml"""
-
-    def errors = []
-    try{
-        cmd(command)
-    } catch (e) {
-         errors << "BDD status : ${e}"
-    }
-
-    if (errors.size() > 0) {
-        currentBuild.result = 'UNSTABLE'
-        for (int i = 0; i < errors.size(); i++) {
-            echo errors[i]
         }
-    }           
 
-    stage "exec libs features"
+        stage('Тестирование кода пакета LINUX') {
 
-    command = """oscript ./src/bdd.os ./features/lib -out ./bdd-lib.log -junit-out ./bdd-lib.xml"""
+            agent { label 'master' }
 
-    errors = []
-    try{
-        cmd(command)
-    } catch (e) {
-         errors << "BDD status (lib) : ${e}"
-    }
+            steps {
+                echo 'under development'
+            }
 
-    if (errors.size() > 0) {
-        currentBuild.result = 'UNSTABLE'
-        for (int i = 0; i < errors.size(); i++) {
-            echo errors[i]
         }
-    }           
 
-    step([$class: 'ArtifactArchiver', artifacts: '**/bdd-exec.log', fingerprint: true])
-    step([$class: 'ArtifactArchiver', artifacts: '**/bdd-lib.log', fingerprint: true])
-    step([$class: 'JUnitResultArchiver', testResults: '**/bdd*.xml'])
-}
+        stage('Сборка пакета') {
 
-def cmd(command) {
-    // TODO при запуске Jenkins не в режиме UTF-8 нужно написать chcp 1251 вместо chcp 65001
-    if (isUnix()){ sh "${command}" } else {bat "chcp 65001\n${command}"}
+            agent { label 'windows' }
+
+            steps {
+                checkout scm
+
+                bat 'erase /Q *.ospx'
+                bat 'chcp 65001 > nul && call opm build .'
+
+                stash includes: '*.ospx', name: 'package'
+                archiveArtifacts '*.ospx'
+            }
+
+        }
+        
+        stage('Публикация в хабе') {
+            when {
+                branch 'master'
+            }
+            agent { label 'master' }
+            steps {
+                sh 'rm -f *.ospx'
+                unstash 'package'
+
+                sh '''
+                artifact=`ls -1 *.ospx`
+                basename=`echo $artifact | sed -r 's/(.+)-.*(.ospx)/\\1/'`
+                cp $artifact $basename.ospx
+                sudo rsync -rv *.ospx /var/www/hub.oscript.io/download/$basename/
+                '''.stripIndent()
+            }
+        }
+
+        stage('Публикация в нестабильном хабе') {
+            when {
+                branch 'develop'
+            }
+            agent { label 'master' }
+            steps {
+                sh 'rm -f *.ospx'
+                unstash 'package'
+
+                sh '''
+                artifact=`ls -1 *.ospx`
+                basename=`echo $artifact | sed -r 's/(.+)-.*(.ospx)/\\1/'`
+                cp $artifact $basename.ospx
+                sudo rsync -rv *.ospx /var/www/hub.oscript.io/dev-channel/$basename/
+                '''.stripIndent()
+            }
+        }
+    }
 }
