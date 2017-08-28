@@ -1,5 +1,3 @@
-def buildFail = false
-
 pipeline {
     agent none
     options {
@@ -16,45 +14,14 @@ pipeline {
                 checkout scm
 
                 script {
-                    // if( fileExists ('tasks/test.os') ){
-                    //     bat 'chcp 65001 > nul && oscript tasks/test.os'
-                    //     junit 'tests.xml'
-                    //     junit 'bdd-log.xml'
-                    // }
-                    // else
-                    //     echo 'no testing task'
-                    timestamps {
-                        try {
-                            bat 'chcp 65001 > nul && call 1testrunner -runall ./tests'
-                        } catch (err) {
-                            buildFail = true
-                            currentBuild.result = 'SUCCESS'
-                        }
+                    if( fileExists ('tasks/test.os') ){
+                        bat 'chcp 65001 > nul && oscript tasks/test.os'
                         junit 'tests.xml'
-                    }
-
-                    timestamps {
-                        try {
-                            bat 'chcp 65001 > nul && oscript ./src/bdd.os ./features/core -out ./bdd-exec.log -junit-out ./bdd-exec.xml'
-                        } catch (err) {
-                            buildFail = true
-                            currentBuild.result = 'SUCCESS'
-                        }
-                        junit 'bdd-exec.xml'
-                    }
-
-                    timestamps {
-                        try {
-                            bat 'chcp 65001 > nul && oscript ./src/bdd.os ./features/lib -out ./bdd-lib.log -junit-out ./bdd-lib.xml'
-                        } catch (err) {
-                            buildFail = true
-                            currentBuild.result = 'SUCCESS'
-                        }
+                        junit 'bdd-log.xml'
                         junit 'bdd-lib.xml'
                     }
-
-                    if (buildFail)
-                        currentBuild.result = 'FAILURE'
+                    else
+                        echo 'no testing task'
                 }
                 
             }
