@@ -14,8 +14,7 @@ pipeline {
 
             steps {
                 checkout scm
-                bat 'git submodule update --init'
-                
+
                 script {
                     // if( fileExists ('tasks/test.os') ){
                     //     bat 'chcp 65001 > nul && oscript tasks/test.os'
@@ -29,6 +28,7 @@ pipeline {
                             bat 'chcp 65001 > nul && call 1testrunner -runall ./tests'
                         } catch (err) {
                             buildFail = true
+                            currentBuild.result = 'SUCCESS'
                         }
                         junit 'tests.xml'
 
@@ -36,6 +36,7 @@ pipeline {
                             bat 'chcp 65001 > nul && oscript ./src/bdd.os ./features/core -out ./bdd-exec.log -junit-out ./bdd-exec.xml'
                         } catch (err) {
                             buildFail = true
+                            currentBuild.result = 'SUCCESS'
                         }
                         junit 'bdd-exec.xml'
 
@@ -43,11 +44,12 @@ pipeline {
                             bat 'chcp 65001 > nul && oscript ./src/bdd.os ./features/lib -out ./bdd-lib.log -junit-out ./bdd-lib.xml'
                         } catch (err) {
                             buildFail = true
+                            currentBuild.result = 'SUCCESS'
                         }
                         junit 'bdd-lib.xml'
                     }
 
-                    if (firstInitFail)
+                    if (buildFail)
                         currentBuild.result = 'FAILURE'
                 }
                 
