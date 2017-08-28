@@ -31,7 +31,9 @@ pipeline {
                             currentBuild.result = 'SUCCESS'
                         }
                         junit 'tests.xml'
+                    }
 
+                    timestamps {
                         try {
                             bat 'chcp 65001 > nul && oscript ./src/bdd.os ./features/core -out ./bdd-exec.log -junit-out ./bdd-exec.xml'
                         } catch (err) {
@@ -39,7 +41,9 @@ pipeline {
                             currentBuild.result = 'SUCCESS'
                         }
                         junit 'bdd-exec.xml'
+                    }
 
+                    timestamps {
                         try {
                             bat 'chcp 65001 > nul && oscript ./src/bdd.os ./features/lib -out ./bdd-lib.log -junit-out ./bdd-lib.xml'
                         } catch (err) {
