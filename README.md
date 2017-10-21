@@ -1,6 +1,6 @@
 # 1BDD для OneScript
 
-[![GitHub release](https://img.shields.io/github/release/artbear/1bdd.svg)](https://github.com/artbear/1bdd/releases) [![Build Status](http://build.oscript.io/buildStatus/icon?job=oscript-library/1bdd/develop) [![Build status](https://ci.appveyor.com/api/projects/status/vbnk445352crljjn?svg=true)](https://ci.appveyor.com/project/artbear/1bdd) 
+[![GitHub release](https://img.shields.io/github/release/artbear/1bdd.svg)](https://github.com/artbear/1bdd/releases) [![Build Status](http://build.oscript.io/buildStatus/icon?job=oscript-library/1bdd/develop)](http://build.oscript.io/job/oscript-library/job/1bdd/job/develop/) [![Build status](https://ci.appveyor.com/api/projects/status/vbnk445352crljjn?svg=true)](https://ci.appveyor.com/project/artbear/1bdd) 
 
 [![Join the chat at https://gitter.im/artbear/1bdd](https://badges.gitter.im/artbear/1bdd.svg)](https://gitter.im/artbear/1bdd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  Здесь вы можете задавать любые вопросы разработчикам и активным участникам.
 
