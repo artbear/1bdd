@@ -8,6 +8,8 @@ env:
 
 services:
   - docker
+  
+dist: trusty
 
 addons:
     sonarqube: true
