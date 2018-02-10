@@ -52,19 +52,19 @@ jobs:
         - provider: releases
           api_key: "$GITHUB_OAUTH_TOKEN"
           file_glob: true
-          file: cli*.ospx
+          file: 1bdd*.ospx
           skip_cleanup: true
           on:
             branch: master
             tags: true
         - provider: script
           skip_cleanup: true
-          script: docker run -it -v $(pwd):/work_dir evilbeaver/onescript:1.0.19 sh -c 'cd /work_dir; opm push --token $GITHUB_OAUTH_TOKEN --channel dev --file ./cli-*.ospx; exit'
+          script: docker run -it -v $(pwd):/work_dir evilbeaver/onescript:1.0.19 sh -c 'cd /work_dir; opm push --token $GITHUB_OAUTH_TOKEN --channel dev --file ./1bdd-*.ospx; exit'
           on:
             branch: develop
         - provider: script
           skip_cleanup: true
-          script: docker run -it -v $(pwd):/work_dir evilbeaver/onescript:1.0.19 sh -c 'cd /work_dir; opm push --token $GITHUB_OAUTH_TOKEN --channel stable --file ./cli-*.ospx; exit'
+          script: docker run -it -v $(pwd):/work_dir evilbeaver/onescript:1.0.19 sh -c 'cd /work_dir; opm push --token $GITHUB_OAUTH_TOKEN --channel stable --file ./1bdd-*.ospx; exit'
           on:
             branch: master
             tags: true
