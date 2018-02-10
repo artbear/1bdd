@@ -1,3 +1,4 @@
+#!/bin/bash
 # temp=`cat packagedef | grep ".Версия(" | sed 's|[^"]*"||' | sed -r 's/".+//'`
 temp=`cat src/Модули/Константы_1bdd.os | grep "ВерсияПродукта = " | sed 's|[^"]*"||' | sed -r 's/".+//'`
 version=${temp##*|}
