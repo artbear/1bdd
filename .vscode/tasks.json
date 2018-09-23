@@ -1,29 +1,36 @@
 {
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "_runner": "terminal",
+    // "_runner": "terminal",
     "windows": {
         "command": "cmd",
-        "args": ["/c", "chcp 65001 ;"]
+        "args": ["/c", "chcp 65001 && "]
     },
     "linux": {
         "command": "sh",
         "args": ["-c"]
     },
-    "isShellCommand": true,
-    "showOutput": "silent",
+    "type": "shell",
+    "suppressTaskName": true,
     "tasks": [
         {
-            "taskName": "Testing project",
+            "label": "Full testing",
             "args": [
-                 "1testrunner",
-                "-runall",
-                "${workspaceRoot}/tests"
+                 "oscript",
+                "${workspaceRoot}/tasks/test.os"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            // "isBuildCommand": false,
-            "isTestCommand": false,
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            // "presentation": {
+            //     "echo": true,
+            //     "reveal": "always",
+            //     "focus": false,
+            //     "panel": "shared",
+            //     "showReuseMessage": true
+            // },
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
@@ -35,7 +42,26 @@
             }
         },
         {
-            "taskName": "Exec all features",
+            "label": "Testing project",
+            "type": "shell",
+            "args": [
+                 "1testrunner",
+                "-runall",
+                "${workspaceRoot}/tests"
+            ],
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "pattern": {
+                    "regexp": "{Модуль\\s+(.+)\\s\\/\\s.*:\\s+(\\d+)\\s+\\/\\s+([^{]*)",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                }
+            }
+        },
+        {
+            "label": "Exec all features",
+            "type": "shell",
             "args": [
                  "oscript",
                 "${workspaceRoot}/src/bdd.os",
@@ -44,11 +70,6 @@
                 "-out", 
                 "${workspaceRoot}/exec.log"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": true,
-            "isTestCommand": false,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
@@ -60,7 +81,8 @@
             }
         },
         {
-            "taskName": "Exec feature",
+            "label": "Exec feature",
+            "type": "shell",
             "args": [
                  "oscript",
                 "${workspaceRoot}/src/bdd.os",
@@ -71,11 +93,6 @@
                 "-junit-out", 
                 "${workspaceRoot}/./tests/junit-log.xml"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            // "isBuildCommand": false,
-            "isTestCommand": true,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": [
@@ -98,7 +115,8 @@
             }
         },
         {
-            "taskName": "Exec feature + debug",
+            "label": "Exec feature + debug",
+            "type": "shell",
             "args": [
                  "oscript",
                 "${workspaceRoot}/src/bdd.os",
@@ -109,11 +127,6 @@
                 "-out", 
                 "${workspaceRoot}/exec.log"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            // "isBuildCommand": false,
-            "isTestCommand": false,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
@@ -125,7 +138,8 @@
             }
         },
         {
-            "taskName": "Exec feature for current step def",
+            "label": "Exec feature for current step def",
+            "type": "shell",
             "args": [
                  "1bdd",
                 "${fileDirname}/../${fileBasenameNoExtension}.feature",
@@ -133,11 +147,6 @@
                 "-out", 
                 "${workspaceRoot}/exec.log"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": false,
-            "isTestCommand": true,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": [
@@ -151,7 +160,8 @@
             }
         },
         {
-            "taskName": "Generate feature steps",
+            "label": "Generate feature steps",
+            "type": "shell",
             "args": [
                  "oscript",
                 "${workspaceRoot}/src/bdd.os",
@@ -162,11 +172,6 @@
                 "-out", 
                 "${workspaceRoot}/exec.log"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            // "isBuildCommand": false,
-            "isTestCommand": false,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
@@ -178,7 +183,8 @@
             }
         },
         {
-            "taskName": "Generate feature steps + debug",
+            "label": "Generate feature steps + debug",
+            "type": "shell",
             "args": [
                  "oscript",
                 "${workspaceRoot}/src/bdd.os",
@@ -189,11 +195,6 @@
                 "-out", 
                 "${workspaceRoot}/gen.log"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            // "isBuildCommand": false,
-            "isTestCommand": false,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
@@ -205,18 +206,14 @@
             }
         },
         {
-            "taskName": "Test current test-file",
+            "label": "Test current test-file",
+            "type": "shell",
             "args": [
                  "oscript",
                 "${workspaceRoot}/../oscript-library/src/1testrunner/testrunner.os",
                 "-run",
                 "${file}"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            // "isBuildCommand": false,
-            "isTestCommand": false,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
@@ -228,45 +225,37 @@
             }
         },
         {
-            "taskName": "Opm: package build",
+            "label": "Opm: package build",
+            "type": "shell",
             "args": [
                  "opm",
                 "build",
                 "${workspaceRoot}"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: compile",
+            "label": "OneScript: compile",
+            "type": "shell",
             "args": [
                  "oscript",
                  "-encoding=utf-8",
                 "-compile",
                 "${file}"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: check",
+            "label": "OneScript: check",
+            "type": "shell",
             "args": [
                  "oscript",
                  "-encoding=utf-8",
                 "-check",
                 "${file}"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: make",
+            "label": "OneScript: make",
+            "type": "shell",
             "args": [
                  "oscript",
                  "-encoding=utf-8",
@@ -274,22 +263,15 @@
                 "${file}",
                 "${fileBasename}.exe"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": false
         },
         {
-            "taskName": "OneScript: run",
+            "label": "OneScript: run",
+            "type": "shell",
             "args": [
                  "oscript",
                  "-encoding=utf-8",
                 "${file}"
             ],
-            "echoCommand": true,
-            "showOutput": "always",
-            "suppressTaskName": true,
-            "isBuildCommand": true,
             "problemMatcher": {
                 "fileLocation": "absolute",
                 "pattern": {
