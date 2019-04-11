@@ -10,6 +10,7 @@
         - [Пример файла шагов](#пример-файла-шагов)
     - [API фреймворка](#api-фреймворка)
     - [Стандартная библиотека](#стандартная-библиотека)
+	- [Расширения для Visual Studio Code](#расширения)
 
 <!-- /TOC -->
 
@@ -186,3 +187,13 @@ oscript bdd.os <команда> <параметры команды> [ключи]
 - `ФайловыеОперации.feature` - создание файлов/каталогов, их копирование, анализ содержимого файлов
 
 Основная документация по шагам находится [в каталоге документации](./docs/readme.md#стандартная-библиотека-шагов)
+
+<a id="markdown-расширения" name="расширения"></a>
+## Расширения для Visual Studio Code
+
+Для Visual Studio Code созданы расширения, облегчающие работу с файлами фич:
+
+- [Snippets and Syntax Highlight for Gherkin (Cucumber)](https://marketplace.visualstudio.com/itemdetails?itemName=stevejpurves.cucumber) - подсветка синтаксиса и автодополнение ключевых слов Gherkin.
+- [Gherkin step autocomplete](https://marketplace.visualstudio.com/itemdetails?itemName=silverbulleters.gherkin-autocomplete) - автодополнение шагов в файлах фич.
+	У этого расширения есть настройка `gherkin-autocomplete.featureLibraries`, которая позволяет подключить внешние по отношению к проекту библиотеки шагов (например, установленную вместе с 1bdd).
+	По `Shift+F12`/`Shift+Alt+F12` можно перейти к реализации текущего шага - если она есть в текущем проекте и/или внешних библиотеках.
