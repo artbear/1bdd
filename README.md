@@ -10,10 +10,11 @@
         - [Пример файла шагов](#пример-файла-шагов)
     - [API фреймворка](#api-фреймворка)
     - [Стандартная библиотека](#стандартная-библиотека)
+	- [Расширения для Visual Studio Code](#расширения)
 
 <!-- /TOC -->
 
-[![GitHub release](https://img.shields.io/github/release/artbear/1bdd.svg)](https://github.com/artbear/1bdd/releases) [![Build Status](http://build.oscript.io/buildStatus/icon?job=oscript-library/1bdd/develop)](http://build.oscript.io/job/oscript-library/job/1bdd/job/develop/) [![Build status](https://ci.appveyor.com/api/projects/status/vbnk445352crljjn?svg=true)](https://ci.appveyor.com/project/artbear/1bdd)
+[![GitHub release](https://img.shields.io/github/release/artbear/1bdd.svg)](https://github.com/artbear/1bdd/releases) [![Build status](https://ci.appveyor.com/api/projects/status/vbnk445352crljjn?svg=true)](https://ci.appveyor.com/project/artbear/1bdd)
 [![Build Status](https://travis-ci.org/artbear/1bdd.svg?branch=develop)](https://travis-ci.org/artbear/1bdd)
 [![Quality Gate](https://sonar.silverbulleters.org/api/badges/gate?key=opensource-1bdd)](https://sonar.silverbulleters.org/dashboard?id=opensource-1bdd)
 [![Tech Debt](https://sonar.silverbulleters.org/api/badges/measure?key=opensource-1bdd&metric=sqale_debt_ratio)](https://sonar.silverbulleters.org/dashboard?id=opensource-1bdd)
@@ -186,3 +187,13 @@ oscript bdd.os <команда> <параметры команды> [ключи]
 - `ФайловыеОперации.feature` - создание файлов/каталогов, их копирование, анализ содержимого файлов
 
 Основная документация по шагам находится [в каталоге документации](./docs/readme.md#стандартная-библиотека-шагов)
+
+<a id="markdown-расширения" name="расширения"></a>
+## Расширения для Visual Studio Code
+
+Для Visual Studio Code созданы расширения, облегчающие работу с файлами фич:
+
+- [Snippets and Syntax Highlight for Gherkin (Cucumber)](https://marketplace.visualstudio.com/itemdetails?itemName=stevejpurves.cucumber) - подсветка синтаксиса и автодополнение ключевых слов Gherkin.
+- [Gherkin step autocomplete](https://marketplace.visualstudio.com/itemdetails?itemName=silverbulleters.gherkin-autocomplete) - автодополнение шагов в файлах фич.
+	У этого расширения есть настройка `gherkin-autocomplete.featureLibraries`, которая позволяет подключить внешние по отношению к проекту библиотеки шагов (например, установленную вместе с 1bdd).
+	По `Shift+F12`/`Shift+Alt+F12` можно перейти к реализации текущего шага - если она есть в текущем проекте и/или внешних библиотеках.
