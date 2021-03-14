@@ -9,7 +9,7 @@ on:
         types: [published, edited]
 
 env:
-  PACKAGE_MASK: 1commands-*.ospx
+  PACKAGE_MASK: 1bdd-*.ospx
 
 jobs:
   build:
