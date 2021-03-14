@@ -1,3 +1,4 @@
+# Файлы
 exec-log.txt
 exec.log
 gen.log
@@ -7,5 +8,9 @@ tests/junit-log.xml
 bdd-log.xml
 tests.xml
 bdd-lib.xml
+bdd-exec.xml
+
+# Каталоги
 .scannerwork/
 oscript_modules/
+coverage/
