@@ -1,6 +1,7 @@
 <a id="markdown-1bdd-для-onescript" name="1bdd-для-onescript"></a>
 # 1BDD для OneScript
 
+
 [![GitHub release](https://img.shields.io/github/release/artbear/1bdd.svg)](https://github.com/artbear/1bdd/releases) 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/artbear/1bdd/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5?style=flat-square)](https://github.com/artbear/1bdd/actions)
 [![Статус Порога Качества](https://sonar.openbsl.ru/api/project_badges/measure?project=1bdd&metric=alert_status)](https://sonar.openbsl.ru/dashboard?id=1bdd) 
@@ -27,7 +28,7 @@
 
 <!-- /TOC -->
 
-[![Join the chat at https://gitter.im/artbear/1bdd](https://badges.gitter.im/artbear/1bdd.svg)](https://gitter.im/artbear/1bdd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  Здесь вы можете задавать любые вопросы разработчикам и активным участникам.
+[Vanessa open-source![Chat on Telegram vanessa_opensource_chat](https://img.shields.io/badge/Chat%20on-Telegram-brightgreen.svg)](https://t.me/vanessa_opensource_chat) или [oscript_library ![Chat on Telegram oscript_library](https://img.shields.io/badge/Chat%20on-Telegram-brightgreen.svg)](https://t.me/oscript_library) - в этих чатах вы можете задавать любые вопросы разработчикам и активным участникам.
 
 `1bdd` - инструмент для выполнения автоматизированных требований/тестов, написанных на обычном, не программном языке.
 
