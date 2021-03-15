@@ -3,7 +3,7 @@
 
 
 [![GitHub release](https://img.shields.io/github/release/artbear/1bdd.svg)](https://github.com/artbear/1bdd/releases) 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/artbear/1bdd/%D0%A2%D0%B5%D1%81%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5?style=flat-square)](https://github.com/artbear/1bdd/actions)
+[![Тестирование](https://github.com/artbear/1bdd/actions/workflows/testing.yml/badge.svg?branch=develop)](https://github.com/artbear/1bdd/actions/workflows/testing.yml)
 [![Статус Порога Качества](https://sonar.openbsl.ru/api/project_badges/measure?project=1bdd&metric=alert_status)](https://sonar.openbsl.ru/dashboard?id=1bdd) 
 [![Покрытие](https://sonar.openbsl.ru/api/project_badges/measure?project=1bdd&metric=coverage)](https://sonar.openbsl.ru/dashboard?id=1bdd)
 [![Технический долг](https://sonar.openbsl.ru/api/project_badges/measure?project=1bdd&metric=sqale_index)](https://sonar.openbsl.ru/dashboard?id=1bdd)
