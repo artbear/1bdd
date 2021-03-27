@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bundle xmlns="http://v8.1c.ru/8.2/addin/bundle">
+	<component type="native" os="Windows" arch="i386" path="Gherkin1CWin32_0-0-0-206.dll" />
+	<component type="native" os="Windows" arch="x86_64" path="Gherkin1CWin64_0-0-0-206.dll" />
+	<component type="native" os="Linux" arch="i386" path="Gherkin1CLin32_0-0-0-206.so" />
+	<component type="native" os="Linux" arch="x86_64" path="Gherkin1CLin64_0-0-0-206.so" />
+</bundle>

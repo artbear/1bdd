@@ -1,0 +1,133 @@
+{
+    "feature": {
+        "description": [
+            {
+                "line": 4,
+                "text": "Как Разработчик"
+            },
+            {
+                "line": 5,
+                "text": "Я Хочу чтобы файл фичи успешно прочитался"
+            }
+        ],
+        "keyword": {
+            "text": "Функционал",
+            "toplevel": true,
+            "type": "feature"
+        },
+        "line": 3,
+        "name": "Пустой функционал",
+        "text": "Функционал: Пустой функционал\r"
+    },
+    "filename": "C:\\Users\\aayukhanov\\Documents\\repo\\1bdd\\tests\\fixtures\\БезПараметров.feature",
+    "language": "ru",
+    "scenarios": [
+        {
+            "keyword": {
+                "text": "Сценарий",
+                "toplevel": true,
+                "type": "scenario"
+            },
+            "line": 8,
+            "name": "Ничего не делаем",
+            "snippet": "ничегонеделаем",
+            "steps": [
+                {
+                    "keyword": {
+                        "text": "Когда",
+                        "type": "when"
+                    },
+                    "line": 10,
+                    "snippet": "яничегонеделаю",
+                    "text": "\tКогда я ничего не делаю\r",
+                    "tokens": [
+                        {
+                            "column": 8,
+                            "text": "Когда",
+                            "type": "Keyword"
+                        },
+                        {
+                            "column": 14,
+                            "text": "я",
+                            "type": "Operator"
+                        },
+                        {
+                            "column": 16,
+                            "text": "ничего",
+                            "type": "Operator"
+                        },
+                        {
+                            "column": 23,
+                            "text": "не",
+                            "type": "Operator"
+                        },
+                        {
+                            "column": 26,
+                            "text": "делаю",
+                            "type": "Operator"
+                        }
+                    ]
+                },
+                {
+                    "keyword": {
+                        "text": "Тогда",
+                        "type": "then"
+                    },
+                    "line": 11,
+                    "snippet": "ничегонепроисходит",
+                    "text": "\tТогда ничего не происходит\r",
+                    "tokens": [
+                        {
+                            "column": 8,
+                            "text": "Тогда",
+                            "type": "Keyword"
+                        },
+                        {
+                            "column": 14,
+                            "text": "ничего",
+                            "type": "Operator"
+                        },
+                        {
+                            "column": 21,
+                            "text": "не",
+                            "type": "Operator"
+                        },
+                        {
+                            "column": 24,
+                            "text": "происходит",
+                            "type": "Operator"
+                        }
+                    ]
+                }
+            ],
+            "text": "\tСценарий: Ничего не делаем\r",
+            "tokens": [
+                {
+                    "column": 8,
+                    "text": "Сценарий",
+                    "type": "Keyword"
+                },
+                {
+                    "column": 16,
+                    "text": ":",
+                    "type": "Colon"
+                },
+                {
+                    "column": 18,
+                    "text": "Ничего",
+                    "type": "Operator"
+                },
+                {
+                    "column": 25,
+                    "text": "не",
+                    "type": "Operator"
+                },
+                {
+                    "column": 28,
+                    "text": "делаем",
+                    "type": "Operator"
+                }
+            ]
+        }
+    ]
+}
