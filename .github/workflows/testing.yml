@@ -2,7 +2,7 @@
 # Copyright (C) 2020 Tymko Oleg <olegtymko@yandex.ru> and contributors
 # All rights reserved.
 
-name: Тестирование
+name: _Тестирование
 # Любой пуш и pr в проекте
 on: [push, pull_request]
 
@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        oscript_version: ['1.4.0']
+        oscript_version: ['1.5.0']
         
     steps:
       # Загрузка проекта
