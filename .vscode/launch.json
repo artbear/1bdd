@@ -8,11 +8,32 @@
             "name": "Отладка 1Script",
             "type": "oscript",
             "request": "launch",
+            "program": "${file}",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "env": {},
+            //"env": {"PATH" : "${env:OVM_OSCRIPTBIN};${env:PATH}"},
+            "runtimeExecutable": null,
+            "runtimeArgs": [],
+            "debugPort": 2801,
+            "windows": {
+                "runtimeExecutable": "${env:OVM_OSCRIPTBIN}\\oscript.exe"
+            },
+            "linux": {
+                "runtimeExecutable": "${env:OVM_OSCRIPTBIN}/oscript"
+            }
+        },
+        {
+            "name": "Отладка запуска фичи в 1bdd - 1Script",
+            "type": "oscript",
+            "request": "launch",
             "program": "${workspaceRoot}/src/bdd.os",
-            "args": ["${workspaceRoot}/features\\core\\ПроверкаГенерации.feature"],
+            "args": ["${file}"],
+            // "args": ["${workspaceRoot}/features\\core\\ПроверкаГенерации.feature"],
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": null,
             "debugPort": 2801
         }
+
     ]
 }
