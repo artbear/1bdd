@@ -1,0 +1,15 @@
+name: Контроль качества
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  sonar:
+    uses: autumn-library/workflows/.github/workflows/sonar.yml@v1
+    with:
+      github_repository: artbear/1bdd # change me!
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+      # SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
