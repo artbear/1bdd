@@ -51,7 +51,8 @@ jobs:
 
       - name: Извлечение версии пакета
         shell: bash
-        run: echo "##[set-output name=version;]`cat src/Модули/Константы_1bdd.os | grep "ВерсияПродукта\s*=" | sed 's|[^"]*"||' | sed -r 's/".+//'`"
+        # run: echo "##[set-output name=version;]`cat src/Модули/Константы_1bdd.os | grep "ВерсияПродукта\s*=" | sed 's|[^"]*"||' | sed -r 's/".+//'`"
+        run: echo "version=`cat packagedef | grep ".Версия(" | sed 's|[^"]*"||' | sed -r 's/".+//'`" >> $GITHUB_OUTPUT
         id: extract_version
 
       - name: Установка Sonar-scanner
