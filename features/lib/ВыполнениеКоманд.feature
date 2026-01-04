@@ -47,20 +47,17 @@
     Тогда Я показываю вывод команды
     Тогда я вижу в консоли вывод
     """
-        Usage:
-
-        I. Script execution: oscript.exe <script_path> [script arguments..]
-
-        II. Special mode: oscript.exe <mode> <script_path> [script arguments..]
-        Mode can be one of these:
+    Usage:
+      oscript.exe [options] <script_path> [script_arguments...]
+      oscript.exe <mode> [mode_options] <script_path> [script_arguments...]
     """ 
     И я не вижу в консоли вывод "Несуществующий вывод команды"
 
 Сценарий: Проверка вывода последней команды с помощью таблицы подстрок
     Когда Я выполняю команду "oscript"
     Тогда я вижу в консоли вывод
-        | Usage |
-        | Special mode: oscript.exe <mode> |
+        | Modes: |
+        | -measure           Measures script execution time. |
     Тогда я не вижу в консоли вывод
         | Несуществующая строка |
         | Несуществующая строка |
@@ -68,15 +65,15 @@
 Сценарий: Проверка вывода команды с помощью таблицы подстрок
     Когда Я выполняю команду "oscript"
     Тогда Вывод команды "oscript" содержит
-        | Usage |
-        | Special mode: oscript.exe <mode> |
+        | Modes: |
+        | -measure           Measures script execution time. |
     Тогда Вывод команды "oscript" не содержит
         | Несуществующая строка |
         | Несуществующая строка |
 
 Сценарий: Проверка вывода регулярными выражениями
     Когда Я выполняю команду "oscript" с параметрами "-version"
-    Тогда я вижу в консоли строку подобно "(\d+\.){3}\d+"
+    Тогда я вижу в консоли строку подобно "(\d+\.){2}\d+"
     И я не вижу в консоли строку подобно "(\d+\.){5}"
 
 Сценарий: Получение кода возврата последней команды
